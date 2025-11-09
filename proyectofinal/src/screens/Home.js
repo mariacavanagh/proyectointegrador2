@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import { FlatList } from "react-native";
 import {db} from '../firebase/config'
 import firebase from "firebase";
@@ -30,7 +30,7 @@ class Home extends Component {
         db.collection('posts')
           .doc(id)
           .update({
-            likes: firebase.firestore.FieldValue.arrayUnion(firebase.auth.currentUser.email)
+            likes: firebase.firestore.FieldValue.arrayUnion(firebase.auth().currentUser.email)
           })
           .catch(e => console.log(e));
       }
@@ -39,23 +39,45 @@ class Home extends Component {
         db.collection('posts')
           .doc(id)
           .update({
-            likes: firebase.firestore.FieldValue.arrayRemove(firebase.auth.currentUser.email)
+            likes: firebase.firestore.FieldValue.arrayRemove(firebase.auth().currentUser.email)
           })
           .catch(e => console.log(e));
       }
 
     render() {
         console.log(this.state.traido);
-        
         return (
-            <FlatList  data={this.state.traido}
-                keyExtractor={item => item.id.toString()}
-                renderItem={({ item }) => <Text>{item.data.cometario}</Text>}
-                //falta renderizar los likes pero me tengo que ir//
-                
-                
-            />
-        );
-    }}
+        <FlatList
+            data={this.state.traido}
+            keyExtractor={item => item.id.toString()}
+            renderItem={({ item }) => {
+                let likeado = false;
 
+                if (item.data.likes.includes(firebase.auth().currentUser.email)) {
+                    likeado = true;
+                }
+
+                return (
+                    <View>
+                        <Text>{item.data.cometario}</Text>
+                        <Text>Cantidad de likes: {item.data.likes.length}</Text>
+
+                        <Pressable
+                            onPress={() =>{
+                                if (likeado){
+                                    {this.unlikearPost(item.id)}
+                                }else
+                                    {this.likearPost(item.id)}
+                            }}
+                        >
+                            <Text>{likeado ? "Sacar like" : "Likear"}</Text>
+                        </Pressable>
+                    </View>
+
+                );
+            }}
+        />)
+
+    }
+}
 export default Home;
