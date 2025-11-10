@@ -13,13 +13,14 @@ class DynamicForm extends Component {
   onSubmit() {
    db.collection('posts').add({
     owner:auth.currentUser.email,
-    cometario: this.state.comentario,
+    comentario: this.state.comentario,
     likes: [],
     createdAt: Date.now(),
    })
    .then(() => {
     console.log("Post subido correctamente");
     this.setState({ comentario: "" }); 
+    this.props.navigation.navigate('Home');
   })
    .catch( error => console.log(error))
   }

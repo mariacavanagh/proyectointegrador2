@@ -59,7 +59,7 @@ class Home extends Component {
 
                 return (
                     <View>
-                        <Text>{item.data.cometario}</Text>
+                        <Text>{item.data.comentario}</Text>
                         <Text>Cantidad de likes: {item.data.likes.length}</Text>
 
                         <Pressable

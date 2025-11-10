@@ -19,6 +19,11 @@ class Register extends Component{
         auth.createUserWithEmailAndPassword(email, pass)
         .then ( response => {
             this.setState({registered: true});
+            db.collection('users').add({
+              owner: auth.currentUser.email,
+              user: this.state.user,
+              createdAt: Date.now(),
+            })
             this.props.navigation.navigate('Login');
             
         })

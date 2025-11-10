@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Pressable } from "react-native";
-import { View, Text, StyleSheet } from "react-native-web";
+import { View, Text, StyleSheet, FlatList } from "react-native-web";
 import { auth, db } from '../firebase/config';
 
 class Profile extends Component{
@@ -21,32 +21,60 @@ class Profile extends Component{
         .where('owner', '==', user.email)
         .onSnapshot((docs) => {
           docs.forEach(doc => {
-            this.setState({ username: doc.data().username })
+            this.setState({ username: doc.data().user })
           })
-        })
+        });
+
+        db.collection('posts')
+        .where('owner', '==', user.email)
+        .orderBy('createdAt', 'desc')
+        .onSnapshot((docs) => {
+          let postsUsuario = [];
+          docs.forEach(doc => {
+            postsUsuario.push({
+              id: doc.id,
+              data: doc.data(),
+            });
+          });
+          this.setState({ misPosts: postsUsuario });
+        });
     }
     
 
     }
     logout(){
     auth.signOut()
-    .then(()=> this.props.navigation.navigate('Registro'))
+    .then(()=> this.props.navigation.navigate('Register'))
     .catch(err=> console.log('err', err))
     }
 
     render(){
         return (
-        <View>
+        <View style={styles.container}>
         <Text style={styles.titulo}>Tu Perfil</Text>
         <View style={styles.cajaUsuario}>
           <Text style={styles.textoCaja}> {this.state.username}</Text>
           <Text style={styles.textoCaja}> {this.state.email}</Text>
         </View>
         <Text style={styles.subtitulo}>Tus posteos: </Text>
-        <Pressable style={styles.logoutButton} onPress={()=> this.logout('Login')}> 
-        <Text style={styles.logoutButtonText}>Cerrar Sesion</Text> </Pressable>
+        {this.state.misPosts.length === 0 ? (
+          <Text style={styles.textoCaja}>Todavía no tenés posteos.</Text>
+        ) : (
+          <FlatList
+            data={this.state.misPosts}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => (
+              <View style={styles.posteo}>
+                <Text style={styles.textoPost}>{item.data.comentario || item.data.cometario}</Text>
+              </View>
+            )}
+          />)}
+        <Pressable style={styles.logoutButton} onPress={()=> this.logout()}> 
+        <Text style={styles.logoutButtonText}>Cerrar Sesion</Text>
+        </Pressable>
         </View>
-    )}
+    );
+    }
 }
 
 
