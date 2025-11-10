@@ -51,7 +51,7 @@ class Login extends Component {
             onChangeText={text => this.setState({ email: text })}
             value={this.state.email}
           />
-          <Text>Contrasena</Text>
+          <Text>Contraseña</Text>
           <TextInput
             style={styles.input}
             keyboardType="default"
@@ -60,11 +60,11 @@ class Login extends Component {
             onChangeText={text => this.setState({ password: text })}
             value={this.state.password}
           />
-          <Pressable style={styles.button} onPress={() => this.onSubmit(this.state.email, this.state.password)}>
+          <Pressable style={styles.buttonPrimero} onPress={() => this.onSubmit(this.state.email, this.state.password)}>
             <Text style={styles.buttonText}>Iniciar Sesion</Text>
           </Pressable>
-          <Pressable style={styles.button} onPress={() => this.props.navigation.navigate("Register")}>
-            <Text style={styles.buttonText}>No tengo cuenta</Text>
+          <Pressable style={styles.buttonSegundo} onPress={() => this.props.navigation.navigate("Register")}>
+            <Text style={styles.buttonTextSegundo}>No tengo cuenta</Text>
           </Pressable>
         </View>
       );
@@ -73,38 +73,57 @@ class Login extends Component {
   
   const styles = StyleSheet.create({
     container: {
-      paddingHorizontal: 10,
-      marginTop: 20,
+      flex: 1,
+      backgroundColor: "#F5F7FA",
+      justifyContent: "center",
+      padding: 24,
     },
     title: {
-      fontSize: 28,
-      fontWeight: "bold",
-      marginBottom: 15,
-      color: "#000",
+      fontSize: 26,
+      fontWeight: "800",
+      marginBottom: 20,
+      color: "#0F172A",
       textAlign: "center",
     },
-    button: {
-      backgroundColor: '#28a745',
-      paddingHorizontal: 10,
-      paddingVertical: 6,
-      alignItems: 'center',
-      borderRadius: 4,
-      borderWidth: 1,
-      borderStyle: 'solid',
-      borderColor: '#28a745',
-      marginTop: 5,
-    },
     input: {
-      height: 20,
-      paddingVertical: 15,
-      paddingHorizontal: 10,
+      height: 48,
       borderWidth: 1,
-      borderColor: '#ccc',
-      borderStyle: 'solid',
-      marginVertical: 10,
+      borderColor: "#D0D5DD",
+      borderRadius: 10,
+      paddingHorizontal: 12,
+      marginBottom: 14,
+      backgroundColor: "#FFFFFF",
+      fontSize: 16,
+    },
+    buttonPrimero: {
+      backgroundColor: "#0A66C2",
+      paddingVertical: 12,
+      borderRadius: 10,
+      alignItems: "center",
+      marginTop: 8,
+      // en web:
+      boxShadow: "0 3px 8px rgba(10,102,194,0.2)",
+    },
+    buttonSegundo: {
+      backgroundColor: "#E9F2FF",
+      paddingVertical: 12,
+      borderRadius: 10,
+      alignItems: "center",
+      marginTop: 8,
+      borderWidth: 1,
+      borderColor: "#BBD6FF",
     },
     buttonText: {
-      color: '#fff',
+      color: "#FFFFFF",
+      fontWeight: "700",
+      fontSize: 16,
+      letterSpacing: 0.3,
+    },
+    buttonTextSegundo: {
+      color: "#0A66C2",
+      fontWeight: "700",
+      fontSize: 16,
+      letterSpacing: 0.3,
     },
   });
   

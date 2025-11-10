@@ -1,11 +1,11 @@
 import React from "react";
-import { View, Text } from "react-native-web";
+import { View } from "react-native";
 import DynamicForm from "../components/DynamicForm";
 
-function Publicar(){
+function Publicar(props){
     return (
         <View>
-        <DynamicForm/>
+        <DynamicForm navigation = {props.navigation}/>
         </View>
     )
 }
