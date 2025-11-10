@@ -61,9 +61,6 @@ class Login extends Component {
           <Pressable style={styles.button} onPress={() => this.props.navigation.navigate("Register")}>
             <Text style={styles.buttonText}>No tengo cuenta</Text>
           </Pressable>
-          <Pressable style={styles.button} onPress={() => this.props.navigation.navigate("HomeMenu")}>
-            <Text style={styles.buttonText}>Entrar en la app</Text>
-          </Pressable>
         </View>
       );
     }
