@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, Pressable, StyleSheet } from 'react-native';
-import {db, auth} from '../firebase/config'
+import { db, auth } from '../firebase/config'
 
 class DynamicForm extends Component {
   constructor(props) {
@@ -11,21 +11,19 @@ class DynamicForm extends Component {
   }
 
   onSubmit() {
-   db.collection('posts').add({
-    owner:auth.currentUser.email,
-    comentario: this.state.comentario,
-    likes: [],
-    comentarios: [],
-    createdAt: Date.now(),
-   })
-   .then(() => {
-    console.log("Post subido correctamente");
-    this.setState({ comentario: "" }); 
-    this.props.navigation.navigate('HomeMenu', { 
-      screen: 'Home' 
-    });
-  })
-   .catch( error => console.log(error))
+    db.collection('posts').add({
+      owner: auth.currentUser.email,
+      comentario: this.state.comentario,
+      likes: [],
+      comentarios: [],
+      createdAt: Date.now(),
+    })
+      .then(() => {
+        console.log("Post subido correctamente");
+        this.setState({ comentario: "" });
+        this.props.navigation.navigate('HomeMenu');
+      })
+      .catch(error => console.log(error))
   }
 
   render() {
@@ -82,7 +80,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     fontSize: 16,
     lineHeight: 22,
-    textAlignVertical: "top", 
+    textAlignVertical: "top",
   },
   button: {
     height: 44,

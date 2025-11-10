@@ -9,36 +9,21 @@ class Comentarios extends Component{
         super(props);
         this.state = {
           comentario: '',
-          posteosTraidos: []
+          comentariosTraidos: []
         };
       }
 
       componentDidMount(){
 
         db.collection('posts')
-        .onSnapshot(docs => {
-            console.log(docs);
-            
-            let posteos = [];
-                docs.forEach(doc => {
-                    posteos.push({
-                        id: doc.id,
-                        data: doc.data().comentarios
-                    });
-                });
-            this.setState({ posteosTraidos: posteos
-            });
-            });
-
-            this.state.posteosTraidos.map(post => {
-                console.log(post.id);
-                console.log(this.props.route.params.postId);
-                
-                
-              if (post.id === this.props.route.params.postId) {
-                this.setState({ posteosTraidos: post });
-              }})
-
+        .doc(this.props.route.params.postId)
+        .onSnapshot(doc => {
+            console.log(doc);
+            if (doc) {
+                const data = doc.data();
+                this.setState({ comentariosTraidos: data.comentarios });
+            }
+        });
         }
           
 
@@ -52,25 +37,24 @@ class Comentarios extends Component{
           })
     })
         .then((res) => {
-          console.log("Comentario agregado");
+        this.setState({ comentario: '' });
+        console.log("Comentario agregado");
         })
         .catch(e => console.log(e));}
 
 render() {
     console.log(this.props);
-    console.log(this.state.posteosTraidos);
+    console.log(this.state.comentariosTraidos);
     
     
     return(
         <View style={styles.container}>
             <Text  style={styles.titulo}>Comentarios</Text>
 
-            <Text>{this.state.posteosTraidos.comentarios}</Text>
-
             <FlatList
-            data={this.state.posteosTraidos.comentarios}
-            keyExtractor={item => item.id.toString()}
-            renderItem={({ item }) => <Text style={styles.usuario}>{item.data.owner}: {item.data.comentarios}</Text>}
+            data={this.state.comentariosTraidos}
+            keyExtractor={(item,index) => index.toString()}
+            renderItem={({ item }) => <Text style={styles.usuario}>{item.usuario}:{item.texto}</Text>}
             />
 
 

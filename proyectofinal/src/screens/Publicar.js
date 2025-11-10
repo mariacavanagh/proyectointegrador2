@@ -5,7 +5,7 @@ import DynamicForm from "../components/DynamicForm";
 function Publicar(props){
     return (
         <View>
-        <DynamicForm navigation = {props.navigation}/>
+        <DynamicForm/>
         </View>
     )
 }
