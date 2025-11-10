@@ -6,7 +6,6 @@ function Publicar(){
     return (
         <View>
         <DynamicForm/>
-        <Text> Formulario de publicar </Text>
         </View>
     )
 }

@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import firebase from "firebase";
 import {db, auth} from '../firebase/config';
-import { TextInput, View, Text, Pressable } from "react-native-web";
-import { FlatList } from "react-native";
+import { TextInput, View, Text, Pressable, FlatList, StyleSheet} from "react-native-web";
 
 
 class Comentarios extends Component{
@@ -63,28 +62,83 @@ render() {
     
     
     return(
-        <View>
-            <Text>Comentarios</Text>
+        <View style={styles.container}>
+            <Text  style={styles.titulo}>Comentarios</Text>
 
             <Text>{this.state.posteosTraidos.comentarios}</Text>
 
             <FlatList
             data={this.state.posteosTraidos.comentarios}
             keyExtractor={item => item.id.toString()}
-            renderItem={({ item }) => <Text>{item.data.owner}: {item.data.comentarios}</Text>}
+            renderItem={({ item }) => <Text style={styles.usuario}>{item.data.owner}: {item.data.comentarios}</Text>}
             />
 
 
-           <Text>Agregue un comentario</Text>
+           <Text style={styles.subtitulo}>Agregue un comentario</Text>
            <TextInput placeholder="Comenta aqui..." value={this.state.comentarios} onChangeText={text => this.setState({comentario: text})}></TextInput>
-           <Pressable onPress={() => this.nuevoComentario()}>
-            <Text>Comentar</Text>
+           <Pressable style={styles.boton}  onPress={() => this.nuevoComentario()}>
+            <Text style={styles.botonTexto}>Comentar</Text>
            </Pressable>
         </View>
     );
 }
 }
 
-
+const styles = StyleSheet.create({
+    container: {
+      padding: 20,
+      backgroundColor: "#f8f9fa",
+      flex: 1,
+    },
+    titulo: {
+      fontSize: 24,
+      fontWeight: "bold",
+      marginBottom: 15,
+      textAlign: "center",
+    },
+    subtitulo: {
+      fontSize: 18,
+      marginTop: 20,
+      marginBottom: 10,
+      fontWeight: "600",
+    },
+    comentarioBox: {
+      backgroundColor: "#fff",
+      borderRadius: 10,
+      padding: 10,
+      marginBottom: 10,
+      shadowColor: "#000",
+      shadowOpacity: 0.1,
+      shadowRadius: 4,
+      shadowOffset: { width: 0, height: 2 },
+    },
+    usuario: {
+      fontWeight: "bold",
+      color: "#007bff",
+    },
+    texto: {
+      marginTop: 4,
+      fontSize: 16,
+    },
+    input: {
+      borderWidth: 1,
+      borderColor: "#ccc",
+      borderRadius: 10,
+      padding: 10,
+      backgroundColor: "#fff",
+    },
+    boton: {
+      backgroundColor: "#007bff",
+      borderRadius: 10,
+      padding: 10,
+      marginTop: 10,
+    },
+    botonTexto: {
+      color: "white",
+      textAlign: "center",
+      fontWeight: "600",
+    },
+  });
+  
 
 export default Comentarios;

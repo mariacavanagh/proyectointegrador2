@@ -48,10 +48,10 @@ class Register extends Component{
                 <Text>Nombre de Usuario</Text>    
                 <TextInput style={styles.input}
                     keyboardType="default"
-                    placeholder="user"
+                    placeholder="usuario"
                     onChangeText={ text => this.setState({user:text})}
                     value={this.state.user}/>
-                <Text>Contrasena</Text>    
+                <Text>Contraseña</Text>    
                 <TextInput style={styles.input}
                     keyboardType="default"
                     placeholder="password"
@@ -73,45 +73,42 @@ class Register extends Component{
 
 const styles = StyleSheet.create({
     container: {
-      paddingHorizontal: 10,
-      marginTop: 20,
-
+      flex: 1,
+      backgroundColor: "#F5F7FA",
+      justifyContent: "center",
+      padding: 24,
     },
     title: {
-      fontSize: 28,
-      fontWeight: "bold",
-      marginBottom: 15,
-      color: "#000",
+      fontSize: 26,
+      fontWeight: "800",
+      marginBottom: 20,
+      color: "#0F172A",
       textAlign: "center",
     },
-    button: {
-        backgroundColor: '#28a745',
-        paddingHorizontal: 10,
-        paddingVertical: 6,
-        alignItems: 'center',
-        borderRadius: 4,
-        borderWidth: 1,
-        borderStyle: 'solid',
-        borderColor: '#28a745',
-        marginTop: 5,
-      
-    },
     input: {
-    height: 20,
-    paddingVertical: 15,
-    paddingHorizontal: 10,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderStyle: 'solid',
-    marginVertical: 10,
-      },
-
+      height: 48,
+      borderWidth: 1,
+      borderColor: "#D0D5DD",
+      borderRadius: 10,
+      paddingHorizontal: 12,
+      marginBottom: 14,
+      backgroundColor: "#FFFFFF",
+      fontSize: 16,
+    },
+    button: {
+      backgroundColor: "#0A66C2",
+      paddingVertical: 12,
+      borderRadius: 10,
+      alignItems: "center",
+      marginTop: 8,
+      boxShadow: "0 3px 8px rgba(10, 102, 194, 0.2)", 
+    },
     buttonText: {
-        color: '#fff'
-    }
-      },
-    
-
-);
+      color: "#FFFFFF",
+      fontWeight: "700",
+      fontSize: 16,
+      letterSpacing: 0.3,
+    },
+  });
 
 export default Register;
