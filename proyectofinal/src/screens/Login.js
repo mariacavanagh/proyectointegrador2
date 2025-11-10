@@ -13,7 +13,12 @@ class Login extends Component {
         password: "",
       };
     }
-  
+  componentDidMount() {
+      auth.onAuthStateChanged((user) => {
+        if (user) {
+          this.props.navigation.navigate("HomeMenu");
+        }});
+    }
     onSubmit(email, password) {
       if (!email.includes('@')) {
         this.setState({ error: 'Email mal formateado' });

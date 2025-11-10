@@ -3,6 +3,8 @@ import { Pressable, Text, View} from "react-native";
 import { StyleSheet } from "react-native";
 import { TextInput } from "react-native-web";
 import { auth } from '../firebase/config';
+import { db } from '../firebase/config';
+
 
 class Register extends Component{
     constructor(props) {

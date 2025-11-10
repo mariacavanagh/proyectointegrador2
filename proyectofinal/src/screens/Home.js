@@ -14,6 +14,8 @@ class Home extends Component {
     componentDidMount() {
         db.collection('posts').orderBy('createdAt', 'desc').onSnapshot(
             docs => {
+                console.log(docs);
+                
                 let posts = [];
                 docs.forEach(doc => {
                     posts.push({
@@ -23,7 +25,7 @@ class Home extends Component {
                 });
                 this.setState({ traido: posts });
             });
-            
+        
     }
 
     likearPost(id) {
@@ -72,8 +74,7 @@ class Home extends Component {
     
                             <Text style={styles.botonTexto}>{likeado ? "Sacar like" : "Likear"}</Text>
                         </Pressable>
-                        <Pressable onPress={() =>
-                                    this.props.navigation.navigate('Comentarios')}>
+                        <Pressable onPress={() => this.props.navigation.navigate('Comentarios', {postId: item.id})}>
                                 <Text>Comentar</Text>
                             </Pressable>
                     </View>

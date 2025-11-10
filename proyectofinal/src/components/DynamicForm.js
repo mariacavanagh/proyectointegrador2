@@ -15,12 +15,13 @@ class DynamicForm extends Component {
     owner:auth.currentUser.email,
     comentario: this.state.comentario,
     likes: [],
+    comentarios: [],
     createdAt: Date.now(),
    })
    .then(() => {
     console.log("Post subido correctamente");
     this.setState({ comentario: "" }); 
-    this.props.navigation.navigate('Home');
+    this.props.navigation.navigate('Home'); //FALTAAAAAAAAA
   })
    .catch( error => console.log(error))
   }

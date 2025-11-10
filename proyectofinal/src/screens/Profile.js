@@ -3,6 +3,7 @@ import { Pressable } from "react-native";
 import { View, Text, StyleSheet, FlatList } from "react-native-web";
 import { auth, db } from '../firebase/config';
 
+
 class Profile extends Component{
     constructor(props){
     super(props)
