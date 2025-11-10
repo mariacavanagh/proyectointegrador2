@@ -32,16 +32,19 @@ class Register extends Component{
         return (
             <View style={styles.container}>
                 <Text style={styles.title}> Formulario de register </Text>
+                <Text>Email</Text>
                 <TextInput style={styles.input}
                     keyboardType="email-address"
                     placeholder="email"
                     onChangeText={ text => this.setState({email:text})}
                     value={this.state.email}/>
+                <Text>Nombre de Usuario</Text>    
                 <TextInput style={styles.input}
                     keyboardType="default"
                     placeholder="user"
                     onChangeText={ text => this.setState({user:text})}
                     value={this.state.user}/>
+                <Text>Contrasena</Text>    
                 <TextInput style={styles.input}
                     keyboardType="default"
                     placeholder="password"
@@ -53,7 +56,7 @@ class Register extends Component{
 
                 </Pressable>
                 <Pressable style={styles.button} onPress={ () => this.props.navigation.navigate("Login")}>
-                    <Text style={styles.buttonText}>Ir a Login</Text>
+                    <Text style={styles.buttonText}>Ya tengo cuenta</Text>
                 </Pressable>
                 
             </View>

@@ -38,6 +38,7 @@ class Login extends Component {
       return (
         <View style={styles.container}>
           <Text style={styles.title}>Formulario de Login</Text>
+          <Text>Email</Text>
           <TextInput
             style={styles.input}
             keyboardType="email-address"
@@ -45,6 +46,7 @@ class Login extends Component {
             onChangeText={text => this.setState({ email: text })}
             value={this.state.email}
           />
+          <Text>Contrasena</Text>
           <TextInput
             style={styles.input}
             keyboardType="default"
@@ -54,10 +56,10 @@ class Login extends Component {
             value={this.state.password}
           />
           <Pressable style={styles.button} onPress={() => this.onSubmit(this.state.email, this.state.password)}>
-            <Text style={styles.buttonText}>Login</Text>
+            <Text style={styles.buttonText}>Iniciar Sesion</Text>
           </Pressable>
           <Pressable style={styles.button} onPress={() => this.props.navigation.navigate("Register")}>
-            <Text style={styles.buttonText}>Ir a Register</Text>
+            <Text style={styles.buttonText}>No tengo cuenta</Text>
           </Pressable>
           <Pressable style={styles.button} onPress={() => this.props.navigation.navigate("HomeMenu")}>
             <Text style={styles.buttonText}>Entrar en la app</Text>
