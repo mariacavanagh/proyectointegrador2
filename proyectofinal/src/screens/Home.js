@@ -62,19 +62,20 @@ class Home extends Component {
                         <Text style={styles.tetxo}>{item.data.comentario}</Text>
                         <Text style={styles.likes}>Cantidad de likes: {item.data.likes.length}</Text>
 
-                        <Pressable style={[
-                        styles.boton,
-                        likeado ? styles.botonUnlike : styles.botonLike,
-                        ]}
+                        <Pressable style={[styles.boton, likeado ? styles.botonUnlike : styles.botonLike,]}
                             onPress ={() =>{
                                 if (likeado){
                                     {this.unlikearPost(item.id)}
                                 }else
                                     {this.likearPost(item.id)}
-                            }}
-                        >
+                            }}>
+    
                             <Text style={styles.botonTexto}>{likeado ? "Sacar like" : "Likear"}</Text>
                         </Pressable>
+                        <Pressable onPress={() =>
+                                    this.props.navigation.navigate('Comentarios')}>
+                                <Text>Comentar</Text>
+                            </Pressable>
                     </View>
 
                 );
