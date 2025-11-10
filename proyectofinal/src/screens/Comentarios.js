@@ -10,7 +10,7 @@ class Comentarios extends Component{
         super(props);
         this.state = {
           comentario: '',
-          comentariosTraidos: []
+          posteosTraidos: []
         };
       }
 
@@ -20,20 +20,24 @@ class Comentarios extends Component{
         .onSnapshot(docs => {
             console.log(docs);
             
-            let comentarios = [];
+            let posteos = [];
                 docs.forEach(doc => {
-                    comentarios.push({
+                    posteos.push({
                         id: doc.id,
                         data: doc.data().comentarios
                     });
                 });
-            this.setState({ comentariosTraidos: comentarios
+            this.setState({ posteosTraidos: posteos
             });
             });
 
-            this.state.comentariosTraidos.map(post => {
+            this.state.posteosTraidos.map(post => {
+                console.log(post.id);
+                console.log(this.props.route.params.postId);
+                
+                
               if (post.id === this.props.route.params.postId) {
-                this.setState({ comentariosTraidos: post });
+                this.setState({ posteosTraidos: post });
               }})
 
         }
@@ -55,17 +59,17 @@ class Comentarios extends Component{
 
 render() {
     console.log(this.props);
-    console.log(this.state.comentariosTraidos);
+    console.log(this.state.posteosTraidos);
     
     
     return(
         <View>
             <Text>Comentarios</Text>
 
-            <Text>{this.state.comentariosTraidos.comentarios}</Text>
+            <Text>{this.state.posteosTraidos.comentarios}</Text>
 
             <FlatList
-            data={this.state.comentariosTraidos.comentarios}
+            data={this.state.posteosTraidos.comentarios}
             keyExtractor={item => item.id.toString()}
             renderItem={({ item }) => <Text>{item.data.owner}: {item.data.comentarios}</Text>}
             />
