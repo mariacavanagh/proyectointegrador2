@@ -21,7 +21,9 @@ class DynamicForm extends Component {
       .then(() => {
         console.log("Post subido correctamente");
         this.setState({ comentario: "" });
-        this.props.navigation.navigate('HomeMenu');
+        this.props.navigation.navigate('HomeMenu', { 
+          screen: 'Home' 
+        });
       })
       .catch(error => console.log(error))
   }
