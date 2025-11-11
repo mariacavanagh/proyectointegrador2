@@ -54,12 +54,17 @@ render() {
             <FlatList
             data={this.state.comentariosTraidos}
             keyExtractor={(item,index) => index.toString()}
-            renderItem={({ item }) => <Text style={styles.usuario}>{item.usuario}:{item.texto}</Text>}
+            renderItem={({ item }) => (
+              <View style={styles.comentarioCard}>
+              <Text style={styles.usuario}>{item.usuario}</Text>
+              <Text style={styles.texto}>{item.texto}</Text>
+            </View>
+            )}
             />
 
 
            <Text style={styles.subtitulo}>Agregue un comentario</Text>
-           <TextInput placeholder="Comenta aqui..." value={this.state.comentarios} onChangeText={text => this.setState({comentario: text})}></TextInput>
+           <TextInput style={styles.input} placeholder="Comenta aqui..." value={this.state.comentarios} onChangeText={text => this.setState({comentario: text})}></TextInput>
            <Pressable style={styles.boton}  onPress={() => this.nuevoComentario()}>
             <Text style={styles.botonTexto}>Comentar</Text>
            </Pressable>
@@ -74,6 +79,25 @@ const styles = StyleSheet.create({
       backgroundColor: "#f8f9fa",
       flex: 1,
     },
+    comentarioCard: {
+    backgroundColor: "#FFFFFF",
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 14,
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: "#E5E7EB", 
+    },
+    input: {
+      height: 48,
+      borderWidth: 1,
+      borderColor: "#D0D5DD",
+      borderRadius: 10,
+      paddingHorizontal: 12,
+      marginBottom: 14,
+      backgroundColor: "#FFFFFF",
+      fontSize: 16,
+    },
     titulo: {
       fontSize: 24,
       fontWeight: "bold",
@@ -85,6 +109,7 @@ const styles = StyleSheet.create({
       marginTop: 20,
       marginBottom: 10,
       fontWeight: "600",
+      textAlign: 'center',
     },
     comentarioBox: {
       backgroundColor: "#fff",
@@ -98,7 +123,7 @@ const styles = StyleSheet.create({
     },
     usuario: {
       fontWeight: "bold",
-      color: "#007bff",
+      color: "black",
     },
     texto: {
       marginTop: 4,

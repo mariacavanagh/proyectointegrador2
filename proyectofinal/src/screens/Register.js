@@ -39,22 +39,22 @@ class Register extends Component{
         return (
             <View style={styles.container}>
                 <Text style={styles.title}> Formulario de register </Text>
-                <Text>Email</Text>
+                <Text style={styles.subtitulos}>Email</Text>
                 <TextInput style={styles.input}
                     keyboardType="email-address"
-                    placeholder="email"
+                    placeholder="Email..."
                     onChangeText={ text => this.setState({email:text})}
                     value={this.state.email}/>
-                <Text>Nombre de Usuario</Text>    
+                <Text style={styles.subtitulos}>Nombre de Usuario</Text>    
                 <TextInput style={styles.input}
                     keyboardType="default"
-                    placeholder="usuario"
+                    placeholder="Usuario..."
                     onChangeText={ text => this.setState({user:text})}
                     value={this.state.user}/>
-                <Text>Contraseña</Text>    
+                <Text style={styles.subtitulos}>Contraseña</Text>    
                 <TextInput style={styles.input}
                     keyboardType="default"
-                    placeholder="password"
+                    placeholder="Contraseña..."
                     secureTextEntry={true}
                     onChangeText={ text => this.setState({password:text})}
                     value={this.state.password}/>
@@ -108,6 +108,12 @@ const styles = StyleSheet.create({
       fontWeight: "700",
       fontSize: 16,
       letterSpacing: 0.3,
+    },
+    subtitulos: {
+        color: 'black',
+        fontWeight: 'bold',
+        marginBottom: 10,
+        fontSize: 16,
     },
   });
 

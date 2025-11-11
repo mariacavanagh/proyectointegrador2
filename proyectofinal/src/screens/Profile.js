@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   cajaUsuario: {
-    backgroundColor: '#C4E3CB', 
+    backgroundColor: '#dee4e0ff', 
     padding: 15,
     borderRadius: 12,
     width: '90%',
@@ -114,6 +114,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#333',
     marginBottom: 4,
+    fontWeight: 'bold',
   },
   
   logoutButton: {

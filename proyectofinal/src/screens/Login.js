@@ -43,7 +43,7 @@ class Login extends Component {
       return (
         <View style={styles.container}>
           <Text style={styles.title}>Formulario de Login</Text>
-          <Text>Email</Text>
+          <Text style={styles.subtitulos}>Email</Text>
           <TextInput
             style={styles.input}
             keyboardType="email-address"
@@ -51,7 +51,7 @@ class Login extends Component {
             onChangeText={text => this.setState({ email: text })}
             value={this.state.email}
           />
-          <Text>Contraseña</Text>
+          <Text style={styles.subtitulos}>Contraseña</Text>
           <TextInput
             style={styles.input}
             keyboardType="default"
@@ -78,6 +78,12 @@ class Login extends Component {
       justifyContent: "center",
       padding: 24,
     },
+    subtitulos: {
+        color: 'black',
+        fontWeight: 'bold',
+        marginBottom: 10,
+        fontSize: 16,
+    },
     title: {
       fontSize: 26,
       fontWeight: "800",
@@ -101,7 +107,6 @@ class Login extends Component {
       borderRadius: 10,
       alignItems: "center",
       marginTop: 8,
-      // en web:
       boxShadow: "0 3px 8px rgba(10,102,194,0.2)",
     },
     buttonSegundo: {
